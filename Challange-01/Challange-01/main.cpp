@@ -71,7 +71,7 @@ NTSTATUS StbDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp) {
 			break;
 		KeSetPriorityThread(reinterpret_cast<PKTHREAD>(Thread), data->Priority);
 		ObDereferenceObject(Thread);
-		KdPrint(("Thread Priority change for %d to %d succeeded!\n", data->ThreadId, data->Priority));
+		DbgPrint("Thread Priority change for %d to %d succeeded!\n", data->ThreadId, data->Priority);
 		KeUnstackDetachProcess(&apcState);
 		break;
 	}
@@ -97,7 +97,7 @@ NTSTATUS StbCreateClose(PDEVICE_OBJECT DeviceObject, PIRP Irp) {
 
 void StbUnload(PDRIVER_OBJECT DriverObject)
 {
-	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\PriorityBooster");
+	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\StopTheBsod");
 	// Delete symbolic link
 	IoDeleteSymbolicLink(&symLink);
 	// Delete device object
