@@ -6,7 +6,7 @@ void StbUnload(PDRIVER_OBJECT DriverObject);
 NTSTATUS StbCreateClose(PDEVICE_OBJECT DeviceObject, PIRP Irp);
 typedef struct SuperSecretNumber {
 	int number;
-} SuperSecretData;
+} SuperSecretNumber;
 NTSTATUS WriteSecretData(SuperSecretNumber* data);
 
 extern "C"
